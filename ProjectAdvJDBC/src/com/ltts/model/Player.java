@@ -1,7 +1,5 @@
 package com.ltts.model;
 
-import java.util.Date;
-
 public class Player {
 
 	private String Name;
