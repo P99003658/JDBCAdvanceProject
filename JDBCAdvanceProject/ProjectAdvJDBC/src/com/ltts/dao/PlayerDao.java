@@ -17,7 +17,7 @@ public class PlayerDao {
 	{
 		Connection c= MyConnection.getConnection();
 		
-		PreparedStatement ps= c.prepareStatement("insert into jdbcadvplayer values(?,?,?)");
+		PreparedStatement ps= c.prepareStatement("insert into jdbcadv values(?,?,?)");
 		ps.setString(1,p.getName());
 		ps.setInt(2, p.getAge());
 		ps.setString(3, p.getCountry());
@@ -28,7 +28,7 @@ public class PlayerDao {
 		List<Player> li=new ArrayList<Player>();
 		Connection mc=MyConnection.getConnection(); // TRanfers control to another 
 		Statement ps=mc.createStatement();
-		ResultSet rs=ps.executeQuery("select * from jdbcadvplayer");
+		ResultSet rs=ps.executeQuery("select * from jdbcadv");
 		//Player p=new Player();
 		while(rs.next()) {
 			li.add(new Player(rs.getString(1),rs.getInt(2),rs.getString(3)));
@@ -54,7 +54,7 @@ public class PlayerDao {
 		// TODO Auto-generated method stub
 		
 		Connection c=MyConnection.getConnection();
-		PreparedStatement ps=c.prepareStatement("UPDATE jdbcadvplayer SET Name = ?,Country = ? where Age=?");
+		PreparedStatement ps=c.prepareStatement("UPDATE jdbcadv SET Name = ?,Country = ? where Age=?");
 		ps.setString(1,Name);
 		ps.setInt(2,Age);
 		ps.setString(3, Country);
