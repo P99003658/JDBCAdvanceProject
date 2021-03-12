@@ -1,10 +1,14 @@
-
 package com.ltts.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.ltts.configuration.MyConnection;
+import com.ltts.model.Player;
 import com.ltts.model.Team;
 
 
@@ -21,4 +25,43 @@ public class TeamDao {
 		System.out.println("Data Inserted Succesfully");
 		return ps.execute();
 }
+	public List<Team> getAllTeam() throws Exception{
+		List<Team> li=new ArrayList<Team>();
+		Connection mc=MyConnection.getConnection(); // TRanfers control to another 
+		Statement ps=mc.createStatement();
+		ResultSet rs=ps.executeQuery("select * from jdbcadvteam");
+		//Player p=new Player();
+		while(rs.next()) {
+			li.add(new Team(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4)));
+			
+		}
+		return li;
+	}
+	public Team getTeamById(int teamid) throws Exception {
+		Team t=new Team();
+		List<Team> li=getAllTeam();
+		for(Team t1:li) {
+			if(t1.getTeam_id() == teamid) {
+				t.setTeam_id(teamid);
+				t.setTeamname(t1.getTeamname());
+				t.setOwnername(t1.getOwnername());
+				
+			}
+		}
+		
+		return t;
+	}
+	public boolean updateTeam(int teamid,String teamname,String ownername,String coachname) throws Exception {
+		// TODO Auto-generated method stub
+		
+		Connection c=MyConnection.getConnection();
+		PreparedStatement ps=c.prepareStatement("UPDATE jdbcadvteam SET teamname = ?,ownername = ? where teamid=?");
+		ps.setInt(1,teamid);
+		ps.setString(2,teamname);
+		ps.setString(3, ownername);
+		ps.setString(4, coachname);
+	
+	return ps.execute();
+	}
+
 }
