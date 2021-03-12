@@ -9,7 +9,7 @@
 </head>
 <body>
 <%
-int auction_id=Integer.parseInt(request.getParameter("auction_idid"));
+int auction_id=Integer.parseInt(request.getParameter("auction_id"));
 AuctionDao pd=new AuctionDao();
 Auction a1=pd.getAuctionById(auction_id);
 %>
