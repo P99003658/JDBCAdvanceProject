@@ -15,7 +15,7 @@ Team t1=pd.getTeamById(teamid);
 %>
 <form action="./UpdateTeamServlet" method="post">
 Team Id: <%=t1.getTeam_id() %> <br><br>
-Team Name: <input type="text" value="<%=t1.getTeamname()%>" name="Teamname"><br><br>
+Team Name: <input type="text" value="<%=t1.getTeamname()%>" name="teamname"><br><br>
 Owner Name: <input type="text" value="<%=t1.getOwnername()%>" name="ownername"><br><br>
 Coach Name: <input type="text" value="<%=t1.getCoachname()%>" name="Coachname"><br><br>
 <input type="submit" value="Update Player">
